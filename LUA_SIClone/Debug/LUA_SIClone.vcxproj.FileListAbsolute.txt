@@ -1,0 +1,3 @@
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Debug\LUA_SIClone.vcxproj.MdMergeInputs.cache
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Debug\LUA_SIClone.vcxproj.cppwinrt_plat.cache
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Debug\LUA_SIClone.vcxproj.cppwinrt_comp.cache

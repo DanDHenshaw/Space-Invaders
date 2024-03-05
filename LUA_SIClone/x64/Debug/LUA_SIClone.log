@@ -1,0 +1,19 @@
+﻿  Game.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Input.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  laser.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  main.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Mothership.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Player.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Scene.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Ship.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Ufo.cpp
+C:\Users\c2031465\Desktop\Space-Invaders-Lua\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Generating Code...
