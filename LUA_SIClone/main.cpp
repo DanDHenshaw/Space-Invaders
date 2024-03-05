@@ -16,6 +16,8 @@ Description:main
 #include "laser.h"
 #include "Mothership.h"
 
+#include "LuaHelper.h"
+
 using namespace std;
 //globals ***maybe add to a class along with the functions below??***
 Ufo*** DynamicUfoArray;
@@ -41,6 +43,14 @@ int main()
 	int laser_generator;//chance of ufo firing
 	int Mothership_chance;//chance of mothership appearing
 
+	// init lua
+	lua_State* luaState = luaL_newstate();
+	// open main libraries for scripts
+	luaL_openlibs(luaState);
+	// Load and parse the lua file
+	if (!LUA::IsOK(luaState, luaL_dofile(luaState, "LuaScript.lua")))
+		assert(false);
+
 	Game_manager = new Game();
 	Input* Input_manager = new Input();
 	DynamicUfoArray = new Ufo**[5] {};
@@ -48,7 +58,9 @@ int main()
 	laser* laser_limit[10]{};
 	laser* Ufo_lasers[10]{};
 
-	the_ship = new Player(500, 625, 5, "assets/player0.bmp");//create the player ship
+	Level_number = LUA::GetInt(luaState, "level");
+
+	the_ship = new Player(500, 625, LUA::GetInt(luaState, "lives"), "assets/player0.bmp");//create the player ship
 	the_ship->addFrame("assets/player1.bmp");
 	
 	game_start_message();//DISPLAY THE GAME START MESSAGE 
@@ -447,6 +459,9 @@ int main()
 	//////////////////////////////////////////	
 	delete the_ship;//delete the player ship
 	the_ship = nullptr;
+
+	lua_close(luaState);
+
 	return 0;
 }
 
