@@ -60,7 +60,10 @@ int main()
 
 	Level_number = LUA::GetInt(luaState, "level");
 
-	the_ship = new Player(500, 625, LUA::GetInt(luaState, "lives"), "assets/player0.bmp");//create the player ship
+  LUA::Vector2 pos;
+  pos.FromLua(luaState, "startpos");
+
+	the_ship = new Player(pos.x, pos.y, LUA::GetInt(luaState, "lives"), "assets/player0.bmp");//create the player ship
 	the_ship->addFrame("assets/player1.bmp");
 	
 	game_start_message();//DISPLAY THE GAME START MESSAGE 

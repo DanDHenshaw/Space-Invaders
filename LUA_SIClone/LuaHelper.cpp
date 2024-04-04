@@ -61,5 +61,26 @@ namespace LUA
 
 #pragma endregion
 
+#pragma region Get Value from Objects
+
+  // Vector 2
+      void Vector2::FromLua(lua_State* luaState, const std::string& name)
+      {
+        lua_getglobal(luaState, name.c_str());
+        if (!lua_istable(luaState, -1))
+          assert(false);
+
+        lua_pushstring(luaState, "x");
+        lua_gettable(luaState, -2);
+        x = (int)lua_tointeger(luaState, -1);
+        lua_pop(luaState, 1);
+
+        lua_pushstring(luaState, "y");
+        lua_gettable(luaState, -2);
+        y = (int)lua_tointeger(luaState, -1);
+        lua_pop(luaState, 1);
+      };
+
+#pragma endregion
 
 }

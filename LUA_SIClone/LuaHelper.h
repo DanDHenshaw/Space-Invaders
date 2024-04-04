@@ -42,4 +42,15 @@ namespace LUA
 	string GetStr(lua_State* luaState, const string& name);
 
 	#pragma endregion
+
+#pragma region Get Value from Objects
+
+  struct Vector2
+  {
+    int x, y;
+
+    void FromLua(lua_State* luaState, const std::string& name);
+  };
+
+#pragma endregion
 }
