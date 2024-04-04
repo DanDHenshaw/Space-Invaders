@@ -62,7 +62,7 @@
 -metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Phone.StartScreen.DualSimTileContract\1.0.0.0\."
 -metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Security.EnterpriseData.EnterpriseDataContract\5.0.0.0\."
 -metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Security.ExchangeActiveSyncProvisioning.EasContract\1.0.0.0\."
--metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Security.Isolation.Isolatedwindowsenvironmentcontract\3.0.0.0\."
+-metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Security.Isolation.IsolatedWindowsEnvironmentContract\3.0.0.0\."
 -metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Services.Maps.GuidanceContract\3.0.0.0\."
 -metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Services.Maps.LocalSearchContract\4.0.0.0\."
 -metadata_dir "C:\Program Files (x86)\Windows Kits\10\References\10.0.22000.0\Windows.Services.Store.StoreContract\4.0.0.0\."

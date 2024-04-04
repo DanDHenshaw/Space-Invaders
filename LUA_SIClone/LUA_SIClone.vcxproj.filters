@@ -86,12 +86,9 @@
     <ClInclude Include="Ufo.h">
       <Filter>Game\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LuaHelper.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="E:\Desktop\LUA_Test\LUA_SIClone\LUA_SIClone\LuaScript.lua" />
     <None Include="LuaScript.lua">
       <Filter>Game\Lua Scripts</Filter>
     </None>
