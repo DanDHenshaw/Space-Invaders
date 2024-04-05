@@ -23,6 +23,9 @@ private:
 	int m_score;
 
 public:
+  lua_State* luaState;
+
+public:
 	//constructor
 	Player(float xPos, float yPos, int lives, string filename);
 	~Player(void);
@@ -36,4 +39,6 @@ public:
 	void kill();
 	void reset_lives();
 	void reset_score();
+
+  void right();
 };

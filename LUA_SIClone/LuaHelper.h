@@ -24,7 +24,7 @@ namespace LUA
 	// check for errors
 	bool IsOK(lua_State* luaState, int id);
 
-	#pragma region Get Values from Lua
+#pragma region Get Values from Lua
 
 	// get an int
 	int GetInt(lua_State* luaState, const string& name);
@@ -41,7 +41,7 @@ namespace LUA
 	// get a string
 	string GetStr(lua_State* luaState, const string& name);
 
-	#pragma endregion
+#pragma endregion
 
 #pragma region Get Value from Objects
 
@@ -53,4 +53,13 @@ namespace LUA
   };
 
 #pragma endregion
+
+#pragma region Get functions from Lua
+
+  int CallRandomNumber(lua_State* luaState, const std::string& filename);
+
+  void CallMoveRight(lua_State* luaState, const std::string& filename, float& xValue, float& frameValue);
+
+#pragma endregion
+
 }
