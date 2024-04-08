@@ -56,9 +56,15 @@ namespace LUA
 
 #pragma region Get functions from Lua
 
-  int CallRandomNumber(lua_State* luaState, const std::string& filename);
+  int CallRandomNumber(lua_State* luaState, const std::string& fname);
 
-  void CallMoveRight(lua_State* luaState, const std::string& filename, float& xValue, float& frameValue);
+  void CallMoveRight(lua_State* luaState, const std::string& fname, float& xValue, float& frameValue);
+
+#pragma endregion
+
+#pragma region Call C++ functions from Lua
+
+  void CallVoidVoidCFunc(lua_State* luaState, const std::string& fname);
 
 #pragma endregion
 

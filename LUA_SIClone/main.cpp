@@ -28,7 +28,8 @@ int x, y;//used for ufo array coordinates
 int randomNumber();//random number generator
 void destroyUFOs();
 void spawnUFOs();
-void display_message(const char* message);
+//void display_message(const char* message);
+int display_message(lua_State* luaState);
 void game_start_message();
 
 int main()
@@ -50,6 +51,10 @@ int main()
 	// Load and parse the lua file
 	if (!LUA::IsOK(luaState, luaL_dofile(luaState, "LuaScript.lua")))
 		assert(false);
+
+  lua_register(luaState, "display_message", display_message);
+
+  LUA::CallVoidVoidCFunc(luaState, "winMessage");
 
 	Game_manager = new Game();
 	Input* Input_manager = new Input();
@@ -412,12 +417,12 @@ int main()
 					{
 						if (level_colour == 255)
 						{
-							display_message("You Win!!!");
+              LUA::CallVoidVoidCFunc(luaState, "winMessage");
 						}
 						else
 						if (level_colour != 255)
 						{
-							display_message("Next Level...");
+              LUA::CallVoidVoidCFunc(luaState, "nextLevelMessage");
 							al_flush_event_queue(Input_manager->Get_event());//clears the queue of events
 							for (int i = 0; i < 10; i++)//delete the lasers
 							{
@@ -511,23 +516,48 @@ void spawnUFOs()
 	}
 }
 
-void display_message(const char* message)
+// void display_message(const char* message)
+// {
+// 	for (int i = 1; i <= 10; i++)//DISPLAY THE GAME OVER MESSAGE *maybe in a method or function?*
+// 	{
+// 		al_clear_to_color(al_map_rgb(125, 125, 125)); // colour entire display with rgb colour
+// 		al_draw_textf(Game_manager->message(), al_map_rgb(100, 250, 50), 300, 300, 0, message);
+// 		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 0, 0, 0, "lives: %d", the_ship->getLives());
+// 		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 200, 0, 0, "Score: %d", the_ship->getScore());
+// 		al_flip_display();
+// 		al_rest(0.25);
+// 		al_clear_to_color(al_map_rgb(125, 125, 125)); // colour entire display with rgb colour
+// 		al_draw_textf(Game_manager->message(), al_map_rgb(0, 0, 0), 300, 300, 0, message);
+// 		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 0, 0, 0, "lives: %d", the_ship->getLives());
+// 		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 200, 0, 0, "Score: %d", the_ship->getScore());
+// 		al_flip_display();
+// 		al_rest(0.25);
+// 	}
+// }
+
+int display_message(lua_State* luaState)
 {
-	for (int i = 1; i <= 10; i++)//DISPLAY THE GAME OVER MESSAGE *maybe in a method or function?*
-	{
-		al_clear_to_color(al_map_rgb(125, 125, 125)); // colour entire display with rgb colour
-		al_draw_textf(Game_manager->message(), al_map_rgb(100, 250, 50), 300, 300, 0, message);
-		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 0, 0, 0, "lives: %d", the_ship->getLives());
-		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 200, 0, 0, "Score: %d", the_ship->getScore());
-		al_flip_display();
-		al_rest(0.25);
-		al_clear_to_color(al_map_rgb(125, 125, 125)); // colour entire display with rgb colour
-		al_draw_textf(Game_manager->message(), al_map_rgb(0, 0, 0), 300, 300, 0, message);
-		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 0, 0, 0, "lives: %d", the_ship->getLives());
-		al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 200, 0, 0, "Score: %d", the_ship->getScore());
-		al_flip_display();
-		al_rest(0.25);
-	}
+  const char* message = lua_tostring(luaState, 1);
+  int time = lua_tointeger(luaState, 2);
+
+  for (int i = 1; i <= time; i++)//DISPLAY THE GAME OVER MESSAGE *maybe in a method or function?*
+  {
+    al_clear_to_color(al_map_rgb(125, 125, 125)); // colour entire display with rgb colour
+    al_draw_textf(Game_manager->message(), al_map_rgb(100, 250, 50), 300, 300, 0, message);
+    al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 0, 0, 0, "lives: %d", the_ship->getLives());
+    al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 200, 0, 0, "Score: %d", the_ship->getScore());
+    al_flip_display();
+    al_rest(0.25);
+    al_clear_to_color(al_map_rgb(125, 125, 125)); // colour entire display with rgb colour
+    al_draw_textf(Game_manager->message(), al_map_rgb(0, 0, 0), 300, 300, 0, message);
+    al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 0, 0, 0, "lives: %d", the_ship->getLives());
+    al_draw_textf(Game_manager->small_message(), al_map_rgb(100, 250, 50), 200, 0, 0, "Score: %d", the_ship->getScore());
+    al_flip_display();
+    al_rest(0.25);
+  }
+
+  lua_pop(luaState, 2);
+  return 1;
 }
 
 void game_start_message()

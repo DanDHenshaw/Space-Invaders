@@ -85,9 +85,9 @@ namespace LUA
 
 #pragma region Get functions from Lua
 
-  int CallRandomNumber(lua_State* luaState, const std::string& filename)
+  int CallRandomNumber(lua_State* luaState, const std::string& fname)
   {
-    lua_getglobal(luaState, filename.c_str());
+    lua_getglobal(luaState, fname.c_str());
 
     if (!lua_isfunction(luaState, -1))
       assert(false);
@@ -100,9 +100,9 @@ namespace LUA
     return result;
   }
 
-  void CallMoveRight(lua_State* luaState, const std::string& filename, float& xValue, float& frameValue)
+  void CallMoveRight(lua_State* luaState, const std::string& fname, float& xValue, float& frameValue)
   {
-    lua_getglobal(luaState, filename.c_str());
+    lua_getglobal(luaState, fname.c_str());
 
     if (!lua_isfunction(luaState, -1))
       assert(false);
@@ -119,5 +119,20 @@ namespace LUA
   }
 
 #pragma endregion
+
+#pragma region Call C++ functions from Lua
+
+  void CallVoidVoidCFunc(lua_State* luaState, const std::string& fname)
+  {
+    lua_getglobal(luaState, fname.c_str());
+
+    if (!lua_isfunction(luaState, -1))
+      assert(false);
+
+    if (!IsOK(luaState, lua_pcall(luaState, 0, 0, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
+      assert(false);
+  }
+
+#pragma endregio
 
 }
