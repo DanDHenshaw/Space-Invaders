@@ -30,10 +30,11 @@ public:
 	Player(float xPos, float yPos, int lives, string filename);
 	~Player(void);
 
+  void Init(LUA::Dispatcher& disp);
+
 	//methods
 	void reduceLives();
 	void increaseLives();
-	void setScore(int score);
 	int getLives();
 	int getScore();
 	void kill();
@@ -41,4 +42,7 @@ public:
 	void reset_score();
 
   void right();
+
+private:
+  void setScore(int score);
 };

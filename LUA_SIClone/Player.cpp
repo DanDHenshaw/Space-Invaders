@@ -35,6 +35,13 @@ Player::~Player()
   lua_close(luaState);
 }
 
+void Player::Init(LUA::Dispatcher& disp)
+{
+  // tell the dispatcher we have a function from Lua
+  LUA::Dispatcher::Command::voidintfunc f{ [this](int score) { return setScore(score); } };
+  disp.Register("setScore", LUA::Dispatcher::Command{ f });
+}
+
 //Methods
 int Player::getScore()//gets the current score
 {

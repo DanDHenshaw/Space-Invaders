@@ -133,6 +133,27 @@ namespace LUA
       assert(false);
   }
 
+  std::map<std::string, Dispatcher::Command> Dispatcher::library;
+
+  int Dispatcher::LuaCall(lua_State* luaState)
+  {
+    std::string name = lua_tostring(luaState, 1);
+    std::map<std::string, Command>::iterator it = library.find(name);
+    assert(it != library.end());
+    Command& cmd = (*it).second;
+
+    if (cmd.voidintfunct)
+    {
+      int param = lua_tointeger(luaState, 2);
+      cmd.voidintfunct(param);
+      lua_pop(luaState, 1);
+    }
+    else // add more cases...
+      assert(false);
+
+    return 1;
+  }
+
 #pragma endregio
 
 }

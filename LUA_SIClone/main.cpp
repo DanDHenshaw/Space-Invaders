@@ -54,8 +54,6 @@ int main()
 
   lua_register(luaState, "display_message", display_message);
 
-  LUA::CallVoidVoidCFunc(luaState, "winMessage");
-
 	Game_manager = new Game();
 	Input* Input_manager = new Input();
 	DynamicUfoArray = new Ufo**[5] {};
@@ -70,6 +68,11 @@ int main()
 
 	the_ship = new Player(pos.x, pos.y, LUA::GetInt(luaState, "lives"), "assets/player0.bmp");//create the player ship
 	the_ship->addFrame("assets/player1.bmp");
+
+  // Setup the dispatcher
+  LUA::Dispatcher disp;
+  disp.Init(luaState);
+  the_ship->Init(disp);
 	
 	game_start_message();//DISPLAY THE GAME START MESSAGE 
 	
@@ -203,7 +206,8 @@ int main()
 										ufo_counter++;
 										delete DynamicUfoArray[y][x];
 										DynamicUfoArray[y][x] = nullptr;
-										the_ship->setScore(100);
+										//the_ship->setScore(100);
+                    LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
 										delete laser_limit[i];
 										laser_limit[i] = nullptr;
 									}
@@ -216,14 +220,17 @@ int main()
 								&& laser_limit[i]->getX() + 4 >= the_mothership->getX() && laser_limit[i]->getX() + 4 <= the_mothership->getX() + 103)  
 							{																	
 								the_mothership->reduceLives();
-								the_ship->setScore(20);
+								//the_ship->setScore(20);
+                LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
 								if (the_mothership->getLives() <= 0)
 								{
 									the_ship->increaseLives();
-									the_ship->setScore(300);
+									//the_ship->setScore(300);
+                  LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
 									delete the_mothership;
 									the_mothership = nullptr;
-									the_ship->setScore(100);
+									//the_ship->setScore(100);
+                  LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
 									delete laser_limit[i];
 									laser_limit[i] = nullptr;
 									laser_limit[i] = NULL;

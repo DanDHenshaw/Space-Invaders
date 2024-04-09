@@ -35,3 +35,8 @@ end
 function nextLevelMessage()
 	display_message("Next Level...")
 end
+
+-- set player score
+function setPlayerScore()
+  CDispatcher("setScore", 5000)
+end
