@@ -44,13 +44,21 @@ int main()
 	int laser_generator;//chance of ufo firing
 	int Mothership_chance;//chance of mothership appearing
 
-	// init lua
+	// init global lua
 	lua_State* luaState = luaL_newstate();
 	// open main libraries for scripts
 	luaL_openlibs(luaState);
 	// Load and parse the lua file
-	if (!LUA::IsOK(luaState, luaL_dofile(luaState, "LuaScript.lua")))
+	if (!LUA::IsOK(luaState, luaL_dofile(luaState, "Main.lua")))
 		assert(false);
+
+  // init player lua
+  lua_State* playerLuaState = luaL_newstate();
+  // open main libraries for scripts
+  luaL_openlibs(playerLuaState);
+  // Load and parse the lua file
+  if (!LUA::IsOK(playerLuaState, luaL_dofile(playerLuaState, "Player.lua")))
+    assert(false);
 
   lua_register(luaState, "display_message", display_message);
 
@@ -64,15 +72,15 @@ int main()
 	Level_number = LUA::GetInt(luaState, "level");
 
   LUA::Vector2 pos;
-  pos.FromLua(luaState, "startpos");
+  pos.FromLua(playerLuaState, "startpos");
 
-	the_ship = new Player(pos.x, pos.y, LUA::GetInt(luaState, "lives"), "assets/player0.bmp");//create the player ship
+	the_ship = new Player(playerLuaState, pos.x, pos.y, LUA::GetInt(playerLuaState, "lives"), "assets/player0.bmp");//create the player ship
 	the_ship->addFrame("assets/player1.bmp");
 
-  // Setup the dispatcher
-  LUA::Dispatcher disp;
-  disp.Init(luaState);
-  the_ship->Init(disp);
+  // Setup the player dispatcher
+  LUA::Dispatcher playerDisp;
+  playerDisp.Init(playerLuaState);
+  the_ship->Init(playerDisp);
 	
 	game_start_message();//DISPLAY THE GAME START MESSAGE 
 	
@@ -207,7 +215,7 @@ int main()
 										delete DynamicUfoArray[y][x];
 										DynamicUfoArray[y][x] = nullptr;
 										//the_ship->setScore(100);
-                    LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
+                    LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 										delete laser_limit[i];
 										laser_limit[i] = nullptr;
 									}
@@ -221,16 +229,16 @@ int main()
 							{																	
 								the_mothership->reduceLives();
 								//the_ship->setScore(20);
-                LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
+                LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 								if (the_mothership->getLives() <= 0)
 								{
 									the_ship->increaseLives();
 									//the_ship->setScore(300);
-                  LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
+                  LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 									delete the_mothership;
 									the_mothership = nullptr;
 									//the_ship->setScore(100);
-                  LUA::CallVoidVoidCFunc(luaState, "setPlayerScore");
+                  LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 									delete laser_limit[i];
 									laser_limit[i] = nullptr;
 									laser_limit[i] = NULL;
@@ -476,7 +484,8 @@ int main()
 	delete the_ship;//delete the player ship
 	the_ship = nullptr;
 
-	lua_close(luaState);
+  lua_close(luaState);
+  lua_close(playerLuaState);
 
 	return 0;
 }

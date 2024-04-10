@@ -1,17 +1,10 @@
--- a simple int variable
-level = 1
+-- Player Script
+
 lives = 50
 
--- a simple vector2 object
 startpos = { x = 500, y=625 }
 
--- random number
-math.randomseed(os.time())
-
-function randomNumber()
-    return math.random(1, 10000)
-end
-
+-------- Player movement Start --------
 -- move right
 function right( x, currentFrame )
 	x = x + 50
@@ -27,14 +20,22 @@ function right( x, currentFrame )
   return x, currentFrame
 end
 
--- display_message
-function winMessage()
-	display_message("You Win!!!")
+-- move left
+function left( x, currentFrame )
+  x = x - 50
+
+  if(x < -5) then
+    x = -5
+  end
+
+  if(currentFrame > 1.9) then
+    currentFrame = 0
+  end
+
+  return x, currentFrame
 end
 
-function nextLevelMessage()
-	display_message("Next Level...")
-end
+-------- Player movement End --------
 
 -- set player score
 function setPlayerScore()

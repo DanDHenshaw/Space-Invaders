@@ -27,7 +27,7 @@ public:
 
 public:
 	//constructor
-	Player(float xPos, float yPos, int lives, string filename);
+	Player(lua_State* luaState, float xPos, float yPos, int lives, string filename);
 	~Player(void);
 
   void Init(LUA::Dispatcher& disp);
@@ -41,7 +41,9 @@ public:
 	void reset_lives();
 	void reset_score();
 
+  // movement
   void right();
+  void left();
 
 private:
   void setScore(int score);

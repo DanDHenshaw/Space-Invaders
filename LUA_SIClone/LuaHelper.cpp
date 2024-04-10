@@ -100,7 +100,7 @@ namespace LUA
     return result;
   }
 
-  void CallMoveRight(lua_State* luaState, const std::string& fname, float& xValue, float& frameValue)
+  void CallMovement(lua_State* luaState, const std::string& fname, float& xValue, float& frameValue)
   {
     lua_getglobal(luaState, fname.c_str());
 
@@ -123,7 +123,7 @@ namespace LUA
 #pragma region Call C++ functions from Lua
 
   void CallVoidVoidCFunc(lua_State* luaState, const std::string& fname)
-  {
+   {
     lua_getglobal(luaState, fname.c_str());
 
     if (!lua_isfunction(luaState, -1))

@@ -91,8 +91,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="E:\Desktop\LUA_Test\LUA_SIClone\LUA_SIClone\LuaScript.lua" />
-    <None Include="LuaScript.lua">
+    <None Include="Main.lua">
+      <Filter>Game\Lua Scripts</Filter>
+    </None>
+    <None Include="Player.lua">
       <Filter>Game\Lua Scripts</Filter>
     </None>
   </ItemGroup>

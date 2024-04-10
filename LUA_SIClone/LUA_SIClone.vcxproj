@@ -44,7 +44,8 @@
     <ClInclude Include="Ufo.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LuaScript.lua" />
+    <None Include="Main.lua" />
+    <None Include="Player.lua" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

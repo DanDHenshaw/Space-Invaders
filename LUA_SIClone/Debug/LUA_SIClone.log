@@ -1,12 +1,8 @@
 ﻿  LuaHelper.cpp
 F:\University\C++\Level5\Space-Invaders\LUA_SIClone\LuaHelper.cpp(157,9): warning C4068: unknown pragma 'endregio'
-  Mothership.cpp
   Player.cpp
-  Scene.cpp
-  Ship.cpp
-  Ufo.cpp
   main.cpp
   Generating Code...
-F:\University\C++\Level5\Space-Invaders\LUA_SIClone\LuaHelper.cpp(35,1): warning C4715: 'LUA::GetFloat': not all control paths return a value
 F:\University\C++\Level5\Space-Invaders\LUA_SIClone\LuaHelper.cpp(44,1): warning C4715: 'LUA::GetDouble': not all control paths return a value
+F:\University\C++\Level5\Space-Invaders\LUA_SIClone\LuaHelper.cpp(35,1): warning C4715: 'LUA::GetFloat': not all control paths return a value
   LUA_SIClone.vcxproj -> F:\University\C++\Level5\Space-Invaders\Debug\LUA_SIClone.exe

@@ -41,7 +41,7 @@ public:
 	void setY(int yVal);
 	int getX();
 	int getY();
-	void left();
+	void left() {};
 	void right() {};
 	void down();
 	void draw(void);

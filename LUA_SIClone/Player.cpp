@@ -12,27 +12,16 @@ Description: Source file for Player class
 #include <stdio.h>
 
 //Constructor
-Player::Player(float xPos, float yPos, int lives, string filename)
-	:Ship(xPos, yPos, filename)
+Player::Player(lua_State* luaState, float xPos, float yPos, int lives, string filename)
+	:Ship(xPos, yPos, filename), luaState(luaState)
 {
 	m_lives = lives;
 	m_score = 0;
-
-  luaState = luaL_newstate();
-
-  // open main libraries for scripts
-  luaL_openlibs(luaState);
-
-  // Load and parse the lua File
-  if(!LUA::IsOK(luaState, luaL_dofile(luaState, "LuaScript.lua")))
-    assert(false);
 }
 
 Player::~Player()
 {
 	//al_destroy_bitmap(m_Ship_image);
-
-  lua_close(luaState);
 }
 
 void Player::Init(LUA::Dispatcher& disp)
@@ -83,7 +72,12 @@ void Player::reset_score()
 	m_score = 0;
 }
 
-void Player::right(void)
+void Player::right()
 {
-  LUA::CallMoveRight(luaState, "right", m_xpos, m_current_frame);
+  LUA::CallMovement(luaState, "right", m_xpos, m_current_frame);
+}
+
+void Player::left()
+{
+  LUA::CallMovement(luaState, "left", m_xpos, m_current_frame);
 }
