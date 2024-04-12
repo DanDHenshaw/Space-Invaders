@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Main.lua" />
-    <None Include="Player.lua" />
+    <None Include="Ship.lua" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

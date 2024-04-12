@@ -33,7 +33,7 @@ protected:
 
 public:
 	//constructor
-	Ship( int xpos, int ypos, string filename);
+	Ship(lua_State* luaState, int xpos, int ypos, string filename);
 	~Ship();
 
 	//methods
@@ -46,4 +46,7 @@ public:
 	void down();
 	void draw(void);
 	void addFrame(string filename);
+
+public:
+  lua_State* luaState;
 };

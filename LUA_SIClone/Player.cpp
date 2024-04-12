@@ -13,7 +13,7 @@ Description: Source file for Player class
 
 //Constructor
 Player::Player(lua_State* luaState, float xPos, float yPos, int lives, string filename)
-	:Ship(xPos, yPos, filename), luaState(luaState)
+	:Ship(luaState, xPos, yPos, filename)
 {
 	m_lives = lives;
 	m_score = 0;

@@ -94,7 +94,7 @@
     <None Include="Main.lua">
       <Filter>Game\Lua Scripts</Filter>
     </None>
-    <None Include="Player.lua">
+    <None Include="Ship.lua">
       <Filter>Game\Lua Scripts</Filter>
     </None>
   </ItemGroup>

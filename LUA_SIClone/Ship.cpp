@@ -15,7 +15,9 @@ Description: Source file for Ship class
 
 
 //Constructor
-Ship::Ship( int xpos, int ypos, string filename)
+
+Ship::Ship(lua_State* luaState, int xpos, int ypos, string filename)
+  :luaState(luaState)
 {
 	m_xpos = xpos;
 	m_ypos = ypos;
@@ -47,13 +49,7 @@ Ship::~Ship()
 }
 
 //Methods
-void Ship::down(void)
-{
-	m_current_frame++;
-	m_ypos += 10;
-	if (m_current_frame > 1.9)
-		m_current_frame = 0;
-}
+
 
 //set and get methods
 void Ship::setX(int xVal)
@@ -74,6 +70,11 @@ int Ship::getX()
 int Ship::getY()
 {
 	return m_ypos;
+}
+
+void Ship::down()
+{
+  LUA::CallMovement(luaState, "down", m_ypos, m_current_frame);
 }
 
 void Ship::draw(void)

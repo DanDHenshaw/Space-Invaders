@@ -12,8 +12,8 @@ Description: Source file for Ufo class
 #include <stdio.h>
 
 //Constructor
-Ufo::Ufo( float xPos, float yPos, string filename)
-	:Ship(xPos, yPos, filename)
+Ufo::Ufo(lua_State* luaState, float xPos, float yPos, string filename)
+	:Ship(luaState, xPos, yPos, filename)
 {
 	m_xpos = xPos;
 	m_ypos = yPos;

@@ -19,7 +19,7 @@ class Ufo : public Ship
 {
 public:
 	//constructor
-	Ufo( float xPos, float yPos, string filename);
+	Ufo(lua_State* luaState, float xPos, float yPos, string filename);
 	~Ufo(void);
 	//methods
 	void left(int counter, int level);

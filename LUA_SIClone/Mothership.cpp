@@ -12,8 +12,8 @@ Description: Source file for Mothership class
 #include <stdio.h>
 
 //Constructor
-Mothership::Mothership(float xPos, float yPos, string filename)
-	:Ship(xPos, yPos, filename)
+Mothership::Mothership(lua_State* luaState, float xPos, float yPos, string filename)
+	:Ship(luaState, xPos, yPos, filename)
 {	
 	m_lives = 10;
 	m_xpos = xPos;

@@ -1,3 +1,21 @@
+-- Ship Script
+
+-------- Ship movement Start --------
+-- move down
+function down( y, currentFrame )
+
+  currentFrame = currentFrame + 1;
+
+  y = y + 10;
+
+  if(currentFrame > 1.9) then
+    currentFrame = 0
+  end
+
+  return y, currentFrame
+end
+-------- Ship movement End --------
+
 -- Player Script
 
 lives = 50

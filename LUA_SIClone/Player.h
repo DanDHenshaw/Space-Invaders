@@ -23,9 +23,6 @@ private:
 	int m_score;
 
 public:
-  lua_State* luaState;
-
-public:
 	//constructor
 	Player(lua_State* luaState, float xPos, float yPos, int lives, string filename);
 	~Player(void);

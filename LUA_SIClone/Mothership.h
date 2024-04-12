@@ -24,7 +24,7 @@ private:
 	
 public:
 	//constructor
-	Mothership(float xPos, float yPos, string filename);
+	Mothership(lua_State* luaState, float xPos, float yPos, string filename);
 	~Mothership(void);
 
 	//methods
