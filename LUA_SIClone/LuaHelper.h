@@ -60,6 +60,7 @@ namespace LUA
   int CallRandomNumber(lua_State* luaState, const std::string& fname);
 
   void CallMovement(lua_State* luaState, const std::string& fname, float& xValue, float& frameValue);
+  void CallReturnInt(lua_State* luaState, const std::string& fname, int& xValue);
 
 #pragma endregion
 

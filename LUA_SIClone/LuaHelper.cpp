@@ -118,6 +118,22 @@ namespace LUA
     lua_pop(luaState, 2);
   }
 
+  void CallReturnInt(lua_State* luaState, const std::string& fname, int& value)
+  {
+    lua_getglobal(luaState, fname.c_str());
+
+    if (!lua_isfunction(luaState, -1))
+      assert(false);
+
+    lua_pushnumber(luaState, value);
+
+    if (!IsOK(luaState, lua_pcall(luaState, 1, 1, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
+      assert(false);
+
+    value = (int)lua_tointeger(luaState, -1);
+    lua_pop(luaState, 1);
+  }
+
 #pragma endregion
 
 #pragma region Call C++ functions from Lua

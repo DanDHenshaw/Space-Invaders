@@ -37,7 +37,7 @@ void Mothership::right()
 
 void Mothership::reduceLives()
 {
-	m_lives --;
+  LUA::CallReturnInt(luaState, "reduceLives", m_lives);
 }
 
 int Mothership::getLives()

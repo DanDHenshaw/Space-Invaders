@@ -59,3 +59,9 @@ end
 function setPlayerScore()
   CDispatcher("setScore", 5000)
 end
+
+-- Mothership Script
+
+function reduceLives( lives )
+  lives = lives - 1
+end
