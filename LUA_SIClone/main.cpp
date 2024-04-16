@@ -74,8 +74,8 @@ int main()
   LUA::Vector2 pos;
   pos.FromLua(playerLuaState, "startpos");
 
-	the_ship = new Player(playerLuaState, pos.x, pos.y, LUA::GetInt(playerLuaState, "lives"), "assets/player0.bmp");//create the player ship
-	the_ship->addFrame("assets/player1.bmp");
+the_ship = new Player(playerLuaState, pos.x, pos.y, LUA::GetInt(playerLuaState, "lives"), "assets/player0.bmp");//create the player ship
+the_ship->addFrame("assets/player1.bmp");
 
   // Setup the player dispatcher
   LUA::Dispatcher playerDisp;
@@ -215,7 +215,7 @@ int main()
 										delete DynamicUfoArray[y][x];
 										DynamicUfoArray[y][x] = nullptr;
 										//the_ship->setScore(100);
-                    LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
+										LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 										delete laser_limit[i];
 										laser_limit[i] = nullptr;
 									}
@@ -229,16 +229,16 @@ int main()
 							{																	
 								the_mothership->reduceLives();
 								//the_ship->setScore(20);
-                LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
+								LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 								if (the_mothership->getLives() <= 0)
 								{
 									the_ship->increaseLives();
 									//the_ship->setScore(300);
-                  LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
+									LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 									delete the_mothership;
 									the_mothership = nullptr;
 									//the_ship->setScore(100);
-                  LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
+									LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 									delete laser_limit[i];
 									laser_limit[i] = nullptr;
 									laser_limit[i] = NULL;

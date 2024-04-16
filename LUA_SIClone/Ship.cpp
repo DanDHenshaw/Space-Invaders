@@ -108,3 +108,8 @@ void Ship::addFrame(string filename)
 	m_ship_images.push_back(new_bitmap);
 }
 
+void Ship::reduceLives()
+{
+	LUA::CallReturnInt(luaState, "reduceLives", m_lives);
+}
+

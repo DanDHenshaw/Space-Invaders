@@ -18,10 +18,6 @@ using namespace std;
 
 class Mothership : public Ship
 {
-private:
-	//members
-	int m_lives;
-	
 public:
 	//constructor
 	Mothership(lua_State* luaState, float xPos, float yPos, string filename);
@@ -30,7 +26,6 @@ public:
 	//methods
 	void left();
 	void right();
-	void reduceLives();
 	int getLives();
 
 };

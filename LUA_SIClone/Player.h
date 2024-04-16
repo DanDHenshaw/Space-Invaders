@@ -19,7 +19,6 @@ class Player: public Ship
 {
 private:
 	//members
-	int m_lives;
 	int m_score;
 
 public:
@@ -30,7 +29,6 @@ public:
   void Init(LUA::Dispatcher& disp);
 
 	//methods
-	void reduceLives();
 	void increaseLives();
 	int getLives();
 	int getScore();

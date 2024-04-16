@@ -18,7 +18,7 @@ end
 
 -- Player Script
 
-lives = 50
+lives = 3
 
 startpos = { x = 500, y=625 }
 

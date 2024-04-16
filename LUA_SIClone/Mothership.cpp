@@ -35,11 +35,6 @@ void Mothership::right()
 	m_xpos = m_xpos + 3 ;
 }
 
-void Mothership::reduceLives()
-{
-  LUA::CallReturnInt(luaState, "reduceLives", m_lives);
-}
-
 int Mothership::getLives()
 {
 	return m_lives;

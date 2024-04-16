@@ -31,6 +31,8 @@ protected:
 	float m_current_frame;
 	float m_direction_flag;
 
+	int m_lives;
+
 public:
 	//constructor
 	Ship(lua_State* luaState, int xpos, int ypos, string filename);
@@ -46,6 +48,8 @@ public:
 	void down();
 	void draw(void);
 	void addFrame(string filename);
+
+	void reduceLives();
 
 public:
   lua_State* luaState;

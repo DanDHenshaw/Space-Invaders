@@ -37,11 +37,6 @@ int Player::getScore()//gets the current score
 	return m_score;
 }
 
-void Player::reduceLives()
-{
-	m_lives -= 1;
-}
-
 void Player::increaseLives()
 {
 	m_lives += 1;

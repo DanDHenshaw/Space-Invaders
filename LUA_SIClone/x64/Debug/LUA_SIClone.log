@@ -1,1 +1,27 @@
-﻿LINK : fatal error LNK1104: cannot open file 'allegro.lib'
+﻿  Barrier.cpp
+  Game.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Input.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  laser.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  LuaHelper.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\LuaHelper.cpp(31,17): warning C4244: 'initializing': conversion from 'lua_Number' to 'float', possible loss of data
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\LuaHelper.cpp(40,17): warning C4244: 'initializing': conversion from 'lua_Number' to 'float', possible loss of data
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\LuaHelper.cpp(163,17): warning C4244: 'initializing': conversion from 'lua_Integer' to 'int', possible loss of data
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\LuaHelper.cpp(173,9): warning C4068: unknown pragma 'endregio'
+  main.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Game.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Mothership.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Player.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Scene.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Ship.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Ufo.cpp
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\Ship.h(14,10): fatal  error C1083: Cannot open include file: 'allegro5/allegro.h': No such file or directory
+  Generating Code...
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\LuaHelper.cpp(35): warning C4715: 'LUA::GetFloat': not all control paths return a value
+C:\Users\c2031465\Desktop\Space-Invaders\LUA_SIClone\LuaHelper.cpp(44): warning C4715: 'LUA::GetDouble': not all control paths return a value
