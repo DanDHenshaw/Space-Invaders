@@ -1,12 +1,14 @@
 -- Ship Script
 
+move_speed = 10
+
 -------- Ship movement Start --------
 -- move down
 function down( y, currentFrame )
 
   currentFrame = currentFrame + 1;
 
-  y = y + 10;
+  y = y + move_speed;
 
   if(currentFrame > 1.9) then
     currentFrame = 0
@@ -20,12 +22,12 @@ end
 
 lives = 3
 
-startpos = { x = 500, y=625 }
+start_pos = { x = 500, y=625 }
 
 -------- Player movement Start --------
 -- move right
 function right( x, currentFrame )
-	x = x + 50
+	x = x + move_speed
 
   if(x > 910) then
     x = 910
@@ -40,7 +42,7 @@ end
 
 -- move left
 function left( x, currentFrame )
-  x = x - 50
+  x = x - move_speed
 
   if(x < -5) then
     x = -5
@@ -56,12 +58,19 @@ end
 -------- Player movement End --------
 
 -- set player score
-function setPlayerScore()
-  CDispatcher("setScore", 5000)
+function setPlayerScore( score )
+  CDispatcher("setScore", score)
+end
+
+-- reset player lives
+function resetPlayerLives( )
+  CDispatcher("reset_lives", lives)
 end
 
 -- Mothership Script
 
 function reduceLives( lives )
   lives = lives - 1
+
+  return lives
 end

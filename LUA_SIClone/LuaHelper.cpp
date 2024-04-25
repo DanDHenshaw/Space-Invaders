@@ -100,20 +100,20 @@ namespace LUA
     return result;
   }
 
-  void CallMovement(lua_State* luaState, const std::string& fname, float& xValue, float& frameValue)
+  void CallMovement(lua_State* luaState, const std::string& fname, float& value, float& frameValue)
   {
     lua_getglobal(luaState, fname.c_str());
 
     if (!lua_isfunction(luaState, -1))
       assert(false);
 
-    lua_pushnumber(luaState, xValue);
+    lua_pushnumber(luaState, value);
     lua_pushnumber(luaState, frameValue);
 
     if (!IsOK(luaState, lua_pcall(luaState, 2, 2, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
       assert(false);
 
-    xValue = (float)lua_tonumber(luaState, -2);
+    value = (float)lua_tonumber(luaState, -2);
     frameValue = (float)lua_tonumber(luaState, -1);
     lua_pop(luaState, 2);
   }
@@ -125,7 +125,7 @@ namespace LUA
     if (!lua_isfunction(luaState, -1))
       assert(false);
 
-    lua_pushnumber(luaState, value);
+    lua_pushinteger(luaState, value);
 
     if (!IsOK(luaState, lua_pcall(luaState, 1, 1, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
       assert(false);
@@ -146,6 +146,19 @@ namespace LUA
       assert(false);
 
     if (!IsOK(luaState, lua_pcall(luaState, 0, 0, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
+      assert(false);
+  }
+
+  void CallVoidPassIntCFunc(lua_State* luaState, const std::string& fname, int value)
+  {
+    lua_getglobal(luaState, fname.c_str());
+
+    if (!lua_isfunction(luaState, -1))
+      assert(false);
+
+    lua_pushinteger(luaState, value);
+
+    if (!IsOK(luaState, lua_pcall(luaState, 1, 0, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
       assert(false);
   }
 
@@ -170,6 +183,6 @@ namespace LUA
     return 1;
   }
 
-#pragma endregio
+#pragma endregion
 
 }

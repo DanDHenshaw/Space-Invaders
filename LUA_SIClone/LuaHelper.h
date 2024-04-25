@@ -59,14 +59,16 @@ namespace LUA
 
   int CallRandomNumber(lua_State* luaState, const std::string& fname);
 
-  void CallMovement(lua_State* luaState, const std::string& fname, float& xValue, float& frameValue);
-  void CallReturnInt(lua_State* luaState, const std::string& fname, int& xValue);
+  void CallMovement(lua_State* luaState, const std::string& fname, float& value, float& frameValue);
+  void CallReturnInt(lua_State* luaState, const std::string& fname, int& value);
 
 #pragma endregion
 
 #pragma region Call C++ functions from Lua
 
   void CallVoidVoidCFunc(lua_State* luaState, const std::string& fname);
+
+  void CallVoidPassIntCFunc(lua_State* luaState, const std::string& fname, int value);
 
   // middle man between C++ and Lua. Register a function to be called from Lua
   class Dispatcher

@@ -1,6 +1,8 @@
 -- a simple int variable
 level = 1
 
+start_time = 3
+
 -- random number
 math.randomseed(os.time())
 

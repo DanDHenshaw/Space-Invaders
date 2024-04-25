@@ -33,7 +33,7 @@ public:
 	int getLives();
 	int getScore();
 	void kill();
-	void reset_lives();
+	void reset_lives(int lives);
 	void reset_score();
 
   // movement

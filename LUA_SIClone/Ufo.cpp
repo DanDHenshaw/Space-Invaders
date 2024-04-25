@@ -12,11 +12,13 @@ Description: Source file for Ufo class
 #include <stdio.h>
 
 //Constructor
-Ufo::Ufo(lua_State* luaState, float xPos, float yPos, string filename)
+Ufo::Ufo(lua_State* luaState, float xPos, float yPos, int level, string filename)
 	:Ship(luaState, xPos, yPos, filename)
 {
 	m_xpos = xPos;
 	m_ypos = yPos;
+
+  score_value = 50 * level;
 }
 
 Ufo::~Ufo()

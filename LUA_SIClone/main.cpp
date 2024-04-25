@@ -27,10 +27,10 @@ int x, y;//used for ufo array coordinates
 
 int randomNumber();//random number generator
 void destroyUFOs();
-void spawnUFOs(lua_State* luaState);
+void spawnUFOs(lua_State* luaState, int level);
 //void display_message(const char* message);
 int display_message(lua_State* luaState);
-void game_start_message();
+void game_start_message(int start_time);
 
 int main()
 {
@@ -72,7 +72,7 @@ int main()
 	Level_number = LUA::GetInt(luaState, "level");
 
   LUA::Vector2 pos;
-  pos.FromLua(playerLuaState, "startpos");
+  pos.FromLua(playerLuaState, "start_pos");
 
 the_ship = new Player(playerLuaState, pos.x, pos.y, LUA::GetInt(playerLuaState, "lives"), "assets/player0.bmp");//create the player ship
 the_ship->addFrame("assets/player1.bmp");
@@ -82,13 +82,13 @@ the_ship->addFrame("assets/player1.bmp");
   playerDisp.Init(playerLuaState);
   the_ship->Init(playerDisp);
 	
-	game_start_message();//DISPLAY THE GAME START MESSAGE 
+	game_start_message(LUA::GetInt(luaState, "start_time"));//DISPLAY THE GAME START MESSAGE 
 	
 	while (the_ship->getLives() > 0)// keep going until the ship is dead
 	{			
 			al_flush_event_queue(Input_manager->Get_event());//clears the queue of events
 
-			spawnUFOs(playerLuaState);
+			spawnUFOs(playerLuaState, Level_number);
 			for (int i = 0; i < 10; i++)//set all lasers to null
 			{
 				laser_limit[i] = NULL;
@@ -210,12 +210,12 @@ the_ship->addFrame("assets/player1.bmp");
 										laser_limit[i]->getX() >= DynamicUfoArray[y][x]->getX() && laser_limit[i]->getX() <= DynamicUfoArray[y][x]->getX() + 68
 										&& laser_limit[i]->getY() >= DynamicUfoArray[y][x]->getY() && laser_limit[i]->getY() <= DynamicUfoArray[y][x]->getY() + 53
 										&& laser_limit[i]->getX() + 4 >= DynamicUfoArray[y][x]->getX() && laser_limit[i]->getX() + 4 <= DynamicUfoArray[y][x]->getX() + 68)
-									{										
+									{
+                    LUA::CallVoidPassIntCFunc(playerLuaState, "setPlayerScore", DynamicUfoArray[y][x]->score_value);
 										ufo_counter++;
 										delete DynamicUfoArray[y][x];
 										DynamicUfoArray[y][x] = nullptr;
 										//the_ship->setScore(100);
-										LUA::CallVoidVoidCFunc(playerLuaState, "setPlayerScore");
 										delete laser_limit[i];
 										laser_limit[i] = nullptr;
 									}
@@ -252,23 +252,23 @@ the_ship->addFrame("assets/player1.bmp");
 						}
 					}
 
-					for (int i = 0; i < 10; i++)//check for hit against player and delete the ufo lasers which hit
-					{
-						if (Ufo_lasers[i] != NULL && Ufo_lasers[i]->getX() >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 10 <= the_ship->getX() + 86
-							&& Ufo_lasers[i]->getY() >= the_ship->getY() + 10 && Ufo_lasers[i]->getY() <= the_ship->getY() + 58
-							&& Ufo_lasers[i]->getX() + 4 >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 4 <= the_ship->getX() + 86)
-						{							
-							the_ship->reduceLives();
-							delete Ufo_lasers[i];
-							Ufo_lasers[i] = nullptr;
-							Ufo_lasers[i] = NULL;
-						}
-						else if (Ufo_lasers[i] != NULL)//draw and move the ufo lasers if no hit
-						{
-							Ufo_lasers[i]->draw();
-							Ufo_lasers[i]->down();
-						}
-					}					
+          for (int i = 0; i < 10; i++)//check for hit against player and delete the ufo lasers which hit
+          {
+            if (Ufo_lasers[i] != NULL && Ufo_lasers[i]->getX() >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 10 <= the_ship->getX() + 86
+              && Ufo_lasers[i]->getY() >= the_ship->getY() + 10 && Ufo_lasers[i]->getY() <= the_ship->getY() + 58
+              && Ufo_lasers[i]->getX() + 4 >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 4 <= the_ship->getX() + 86)
+            {
+              the_ship->reduceLives();
+              delete Ufo_lasers[i];
+              Ufo_lasers[i] = nullptr;
+              Ufo_lasers[i] = NULL;
+            }
+            else if (Ufo_lasers[i] != NULL)//draw and move the ufo lasers if no hit
+            {
+              Ufo_lasers[i]->draw();
+              Ufo_lasers[i]->down();
+            }
+          }
 
 					//draw all the ufos
 					for (x = 0; x < 10; x++)
@@ -401,8 +401,9 @@ the_ship->addFrame("assets/player1.bmp");
 								ufo_counter = 0;//how many ufos destroyed (this tells the game when to start a new level)
 								level_colour = 0;//for setting the background colour for each level and also defines the max number of levels
 								Level_number = 1;
-								the_ship->reset_lives();
-								game_start_message();//DISPLAY THE GAME START MESSAGE 
+								//the_ship->reset_lives();
+                LUA::CallVoidVoidCFunc(playerLuaState, "resetPlayerScore");
+								game_start_message(LUA::GetInt(luaState, "start_time"));//DISPLAY THE GAME START MESSAGE 
 								for (int i = 0; i < 10; i++)//set all lasers to null
 								{
 									laser_limit[i] = NULL;
@@ -422,7 +423,7 @@ the_ship->addFrame("assets/player1.bmp");
 								//delete the ufo's 
 								destroyUFOs();
 								//then respawn them
-								spawnUFOs(playerLuaState);
+								spawnUFOs(playerLuaState, Level_number);
 								break;
 							}
 						}
@@ -516,7 +517,7 @@ void destroyUFOs()
 	}
 }
 
-void spawnUFOs(lua_State* luaState)
+void spawnUFOs(lua_State* luaState, int level)
 {
 	for (y = 0; y < 5; y++)//spawn ufos
 	{
@@ -526,7 +527,7 @@ void spawnUFOs(lua_State* luaState)
 	{
 		for (x = 0; x < 10; x++)
 		{
-			DynamicUfoArray[y][x] = new Ufo(luaState, (x * 85) + 85, (y * 50) + 70, "assets/Ufo1.bmp");
+			DynamicUfoArray[y][x] = new Ufo(luaState, (x * 85) + 85, (y * 50) + 70, level, "assets/Ufo1.bmp");
 			DynamicUfoArray[y][x]->addFrame("assets/Ufo2.bmp");
 		}
 	}
@@ -576,7 +577,7 @@ int display_message(lua_State* luaState)
   return 1;
 }
 
-void game_start_message()
+void game_start_message(int start_time)
 {
 	for (int i = 1; i <= 10; i++)
 	{
@@ -589,7 +590,7 @@ void game_start_message()
 		al_flip_display();
 		al_rest(0.25);
 	}
-	for (int i = 5; i >= 0; i--)//DISPLAY THE GAME START MESSAGE *maybe in a method or function?*
+	for (int i = start_time; i >= 0; i--)//DISPLAY THE GAME START MESSAGE *maybe in a method or function?*
 	{
 		al_clear_to_color(al_map_rgb(125, 125, 125)); // colour entire display with rgb colour
 		al_draw_textf(Game_manager->message(), al_map_rgb(0, 255, 0), 300, 300, 0, "START IN: %d", i);

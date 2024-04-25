@@ -27,8 +27,12 @@ Player::~Player()
 void Player::Init(LUA::Dispatcher& disp)
 {
   // tell the dispatcher we have a function from Lua
-  LUA::Dispatcher::Command::voidintfunc f{ [this](int score) { return setScore(score); } };
-  disp.Register("setScore", LUA::Dispatcher::Command{ f });
+  LUA::Dispatcher::Command::voidintfunc vif{ [this](int score) { return setScore(score); } };
+  disp.Register("setScore", LUA::Dispatcher::Command{ vif });
+
+  vif = { [this](int lives) { return reset_lives(lives); } };
+  disp.Register("resetPlayerLives", LUA::Dispatcher::Command{ vif });
+
 }
 
 //Methods
@@ -57,9 +61,9 @@ void Player::kill()
 	m_lives = 0;
 }
 
-void Player::reset_lives()
+void Player::reset_lives(int lives)
 {
-	m_lives = 3;
+	m_lives = lives;
 }
 
 void Player::reset_score()
