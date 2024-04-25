@@ -100,17 +100,18 @@ namespace LUA
     return result;
   }
 
-  void CallMovement(lua_State* luaState, const std::string& fname, float& value, float& frameValue)
+  void CallMovement(lua_State* luaState, const std::string& fname, float move_speed, float& value, float& frameValue)
   {
     lua_getglobal(luaState, fname.c_str());
 
     if (!lua_isfunction(luaState, -1))
       assert(false);
 
+    lua_pushnumber(luaState, move_speed);
     lua_pushnumber(luaState, value);
     lua_pushnumber(luaState, frameValue);
 
-    if (!IsOK(luaState, lua_pcall(luaState, 2, 2, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
+    if (!IsOK(luaState, lua_pcall(luaState, 3, 2, 0))) // calls a function in protected mode. (state, number of parameters, number of return values, errorfunc)
       assert(false);
 
     value = (float)lua_tonumber(luaState, -2);

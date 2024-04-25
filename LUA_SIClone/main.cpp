@@ -252,22 +252,19 @@ the_ship->addFrame("assets/player1.bmp");
 						}
 					}
 
-          for (int i = 0; i < 10; i++)//check for hit against player and delete the ufo lasers which hit
+          if (Ufo_lasers[0] != NULL && Ufo_lasers[1]->getX() >= the_ship->getX() + 10 && Ufo_lasers[0]->getX() + 10 <= the_ship->getX() + 86
+            && Ufo_lasers[0]->getY() >= the_ship->getY() + 10 && Ufo_lasers[0]->getY() <= the_ship->getY() + 58
+            && Ufo_lasers[0]->getX() + 4 >= the_ship->getX() + 10 && Ufo_lasers[0]->getX() + 4 <= the_ship->getX() + 86)
           {
-            if (Ufo_lasers[i] != NULL && Ufo_lasers[i]->getX() >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 10 <= the_ship->getX() + 86
-              && Ufo_lasers[i]->getY() >= the_ship->getY() + 10 && Ufo_lasers[i]->getY() <= the_ship->getY() + 58
-              && Ufo_lasers[i]->getX() + 4 >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 4 <= the_ship->getX() + 86)
-            {
-              the_ship->reduceLives();
-              delete Ufo_lasers[i];
-              Ufo_lasers[i] = nullptr;
-              Ufo_lasers[i] = NULL;
-            }
-            else if (Ufo_lasers[i] != NULL)//draw and move the ufo lasers if no hit
-            {
-              Ufo_lasers[i]->draw();
-              Ufo_lasers[i]->down();
-            }
+            the_ship->reduceLives();
+            delete Ufo_lasers[0];
+            Ufo_lasers[0] = nullptr;
+            Ufo_lasers[0] = NULL;
+          }
+          else if (Ufo_lasers[0] != NULL)//draw and move the ufo lasers if no hit
+          {
+            Ufo_lasers[0]->draw();
+            Ufo_lasers[0]->down();
           }
 
 					//draw all the ufos

@@ -12,12 +12,12 @@
 ## Ship.lua
 - lives - used to define how many lives the player has when the game starts
 - start_pos - used to define the starting position of the player
-- move_speed - used to change the player ships movement speed
 
 ### Lua Functions
-- left - takes in a x position and currentFrame and moves the ship left
-- right - takes in a x position and currentFrame and moves the ship right
-- down - takes in a x position and currentFrame and moves the ship down
+- left - takes in a move_speed, x position and currentFrame and moves the ship left
+- right - takes in a move_speed, x position and currentFrame and moves the ship right
+- down - takes in a move_speed, y position and currentFrame and moves the ship down
+- reduceLives - takes in a lives variable and reduces it by 1
 
 ### C++ Functions
 - setPlayerScore - calls the setScore function on the player

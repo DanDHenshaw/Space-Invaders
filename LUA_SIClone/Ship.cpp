@@ -74,7 +74,7 @@ int Ship::getY()
 
 void Ship::down()
 {
-  LUA::CallMovement(luaState, "down", m_ypos, m_current_frame);
+  LUA::CallMovement(luaState, "down", 3, m_ypos, m_current_frame);
 }
 
 void Ship::draw(void)
@@ -112,4 +112,3 @@ void Ship::reduceLives()
 {
 	LUA::CallReturnInt(luaState, "reduceLives", m_lives);
 }
-

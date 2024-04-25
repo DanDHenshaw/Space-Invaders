@@ -1,10 +1,8 @@
 -- Ship Script
 
-move_speed = 10
-
 -------- Ship movement Start --------
 -- move down
-function down( y, currentFrame )
+function down( move_speed, y, currentFrame )
 
   currentFrame = currentFrame + 1;
 
@@ -26,7 +24,7 @@ start_pos = { x = 500, y=625 }
 
 -------- Player movement Start --------
 -- move right
-function right( x, currentFrame )
+function right( move_speed, x, currentFrame )
 	x = x + move_speed
 
   if(x > 910) then
@@ -41,7 +39,7 @@ function right( x, currentFrame )
 end
 
 -- move left
-function left( x, currentFrame )
+function left( move_speed, x, currentFrame )
   x = x - move_speed
 
   if(x < -5) then

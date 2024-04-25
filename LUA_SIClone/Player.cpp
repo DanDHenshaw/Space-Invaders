@@ -73,10 +73,10 @@ void Player::reset_score()
 
 void Player::right()
 {
-  LUA::CallMovement(luaState, "right", m_xpos, m_current_frame);
+  LUA::CallMovement(luaState, "right", 10, m_xpos, m_current_frame);
 }
 
 void Player::left()
 {
-  LUA::CallMovement(luaState, "left", m_xpos, m_current_frame);
+  LUA::CallMovement(luaState, "left", 10, m_xpos, m_current_frame);
 }

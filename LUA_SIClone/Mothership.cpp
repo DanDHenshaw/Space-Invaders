@@ -32,7 +32,7 @@ void Mothership::left()
 
 void Mothership::right()
 {
-	m_xpos = m_xpos + 3 ;
+  LUA::CallMovement(luaState, "down", 3, m_ypos, m_current_frame);
 }
 
 int Mothership::getLives()
