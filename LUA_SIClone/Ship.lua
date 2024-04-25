@@ -1,5 +1,7 @@
 -- Ship Script
 
+mothershipSprite = "assets/Mothership.bmp"
+
 -------- Ship movement Start --------
 -- move down
 function down( move_speed, y, currentFrame )
@@ -14,6 +16,18 @@ function down( move_speed, y, currentFrame )
 
   return y, currentFrame
 end
+
+-- move right
+function right_outofbounds( move_speed, x, currentFrame )
+	x = x + move_speed
+
+  if(currentFrame > 1.9) then
+    currentFrame = 0
+  end
+  
+  return x, currentFrame
+end
+
 -------- Ship movement End --------
 
 -- Player Script
@@ -21,6 +35,9 @@ end
 lives = 3
 
 start_pos = { x = 500, y=625 }
+
+playerSprite = "assets/ufoph.bmp"
+playerLaser = "assets/PlayerLaser.bmp"
 
 -------- Player movement Start --------
 -- move right

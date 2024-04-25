@@ -40,7 +40,7 @@ namespace LUA
 	bool GetBool(lua_State* luaState, const string& name);
 
 	// get a string
-	string GetStr(lua_State* luaState, const string& name);
+	std::string GetStr(lua_State* luaState, const string& name);
 
 #pragma endregion
 

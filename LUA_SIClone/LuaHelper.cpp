@@ -51,11 +51,11 @@ namespace LUA
       return (bool)lua_toboolean(luaState, -1);
     }
 
-    string GetStr(lua_State* luaState, const string& name)
+    std::string GetStr(lua_State* luaState, const string& name)
     {
       lua_getglobal(luaState, name.c_str());
       if (!lua_isstring(luaState, -1))
-          assert(false);
+        assert(false);
       return lua_tostring(luaState, -1);
     }
 

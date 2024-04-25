@@ -74,8 +74,9 @@ int main()
   LUA::Vector2 pos;
   pos.FromLua(playerLuaState, "start_pos");
 
-the_ship = new Player(playerLuaState, pos.x, pos.y, LUA::GetInt(playerLuaState, "lives"), "assets/player0.bmp");//create the player ship
-the_ship->addFrame("assets/player1.bmp");
+  std::string playerSprite = LUA::GetStr(playerLuaState, "playerSprite");
+the_ship = new Player(playerLuaState, pos.x, pos.y, LUA::GetInt(playerLuaState, "lives"), playerSprite);//create the player ship
+the_ship->addFrame(playerSprite);
 
   // Setup the player dispatcher
   LUA::Dispatcher playerDisp;
@@ -126,7 +127,7 @@ the_ship->addFrame("assets/player1.bmp");
 						{
 							if (laser_limit[i] == NULL)
 							{
-								laser_limit[i] = new laser(the_ship->getX() + 44, the_ship->getY(), "assets/PlayerLaser.bmp");
+								laser_limit[i] = new laser(the_ship->getX() + 44, the_ship->getY(), LUA::GetStr(playerLuaState, "playerLaser"));
 								break;
 							}
 						}
@@ -146,7 +147,7 @@ the_ship->addFrame("assets/player1.bmp");
                   {
                     if(Ufo_lasers[i] == NULL)
                     {
-                      Ufo_lasers[i] = new laser(DynamicUfoArray[y][x]->getX() + 35, DynamicUfoArray[y][x]->getY() + 53, "assets/PlayerLaser.bmp");
+                      Ufo_lasers[i] = new laser(DynamicUfoArray[y][x]->getX() + 35, DynamicUfoArray[y][x]->getY() + 53, LUA::GetStr(playerLuaState, "playerLaser"));
                     }
                   }
                 }
@@ -163,8 +164,9 @@ the_ship->addFrame("assets/player1.bmp");
 
             if(Mothership_chance >= 9990)
             {
-              the_mothership = new Mothership(playerLuaState, 0, 20, "assets/Mothership.bmp");
-              the_mothership->addFrame("assets/Mothership.bmp");
+              std::string mothershipSprite = LUA::GetStr(playerLuaState, "mothershipSprite");
+              the_mothership = new Mothership(playerLuaState, 0, 20, mothershipSprite);
+              the_mothership->addFrame(mothershipSprite);
             }
 					}
 					if (the_mothership != NULL)//draw and move the mothership

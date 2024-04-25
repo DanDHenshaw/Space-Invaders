@@ -10,12 +10,16 @@
 - nextLevelMessage - displays the message "Next Level..."
 
 ## Ship.lua
+- mothershipSprite - used to define the mothership sprite
 - lives - used to define how many lives the player has when the game starts
 - start_pos - used to define the starting position of the player
+- playerSprite - used to define the player sprite
+- playerLaser - used to define the laser sprite
 
 ### Lua Functions
 - left - takes in a move_speed, x position and currentFrame and moves the ship left
 - right - takes in a move_speed, x position and currentFrame and moves the ship right
+- right_outofbounds - takes in a move_speed, x position and currentFrame and moves the ship right with no bounds (move off screen)
 - down - takes in a move_speed, y position and currentFrame and moves the ship down
 - reduceLives - takes in a lives variable and reduces it by 1
 
